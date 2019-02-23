@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Header = styled.div`
-  height: 100vh;
+  height: calc(100vh - 40px);
   min-height: 400px;
 `;
 
