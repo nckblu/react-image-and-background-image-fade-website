@@ -1,6 +1,7 @@
 import React from "react";
 import NextHead from "next/head";
 import { string } from "prop-types";
+import GoogleFontLoader from "react-google-font-loader";
 
 const defaultDescription = "";
 const defaultOGURL = "";
@@ -31,6 +32,14 @@ export const Head = props => (
     <meta property="og:image" content={props.ogImage || defaultOGImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <GoogleFontLoader
+      fonts={[
+        {
+          font: "Montserratt",
+          weights: [400, 700],
+        },
+      ]}
+    />
   </NextHead>
 );
 
