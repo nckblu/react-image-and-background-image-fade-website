@@ -4,6 +4,7 @@ import { ThemeProvider } from "styled-components";
 import Head from "../Head";
 import StyledWrapper from "./elements/Wrapper";
 import GlobalStyle from "./elements/GlobalStyle";
+// import Bar from "./elements/Bar";
 import theme from "./theme";
 
 export const Wrapper = ({ pageTitle, children }) => (

@@ -5,8 +5,6 @@ export const HeaderContent = styled.div`
   position: relative;
   top: 50%;
   transform: translateY(-50%);
-  display: flex;
-  justify-content: center;
   text-align: center;
 `;
 

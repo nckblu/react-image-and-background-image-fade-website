@@ -4,6 +4,7 @@ import { BackgroundImage } from "react-image-and-background-image-fade";
 export const HeaderBackgroundImage = styled(BackgroundImage)`
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
 
   &:before {
     content: "";
