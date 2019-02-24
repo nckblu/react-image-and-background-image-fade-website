@@ -29,7 +29,7 @@ export const Home = () => (
             <Link href="/test">
               <Button light>github</Button>
             </Link>
-            <Link href="/test">
+            <Link href="/docs">
               <Button light>docs</Button>
             </Link>
             <Link href="/test">
