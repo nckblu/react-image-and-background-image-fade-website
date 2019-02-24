@@ -12,6 +12,7 @@
     "react-dom": "^16.8.3",
     "react-google-font-loader": "^1.0.5",
     "react-image-and-background-image-fade": "^1.0.4",
+    "react-spinners": "^0.5.1",
     "react-style-reset": "^1.2.0",
     "styled-components": "^4.1.3"
   },

@@ -3,6 +3,7 @@ import Link from "next/link";
 import Wrapper from "../components/common/Wrapper";
 import Header from "../components/home/Header";
 import HeaderBackgroundImage from "../elements/home/HeaderBackgroundImage";
+import FeatureBackgroundImage from "../elements/home/FeatureBackgroundImage";
 import HeaderContent from "../elements/home/HeaderContent";
 import HeaderH1 from "../elements/home/HeaderH1";
 import HeaderContentButtons from "../elements/home/HeaderContentButtons";
@@ -48,22 +49,31 @@ export const Home = () => (
             <li>Flexible</li>
           </ul>
         )}
-        renderFeature={() => "im a feautre"}
+        renderFeature={() => (
+          <FeatureBackgroundImage
+            src="/static/images/home/feature1.jpg"
+            width="836px"
+            height="668px"
+            isResponsive
+          />
+        )}
         link="/test"
         linkText="see docs"
       />
       <FeaturePanel
-        title="features"
-        renderDescription={() => (
-          <ul>
-            <li>Fade in images and background images</li>
-            <li>Lazy loading</li>
-            <li>Custom loaders</li>
-            <li>Responsive</li>
-            <li>Flexible</li>
-          </ul>
+        title="lazy loading"
+        renderDescription={() =>
+          "Lazy loading out of the box using React Visibility Sensor"
+        }
+        renderFeature={() => (
+          <FeatureBackgroundImage
+            src="/static/images/home/feature2.jpg"
+            width="836px"
+            height="668px"
+            isResponsive
+            lazyLoad
+          />
         )}
-        renderFeature={() => "im a feautre"}
         link="/test"
         linkText="see docs"
         alternate

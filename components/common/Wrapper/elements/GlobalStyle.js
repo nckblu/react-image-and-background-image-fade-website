@@ -14,6 +14,7 @@ export const GlobalStyle = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
     color: ${props => props.theme.main};
     font-family: "Montserrat", sans-serif;
+    line-height: 1.4;
   }
 
   h1, h2, h3, h4, h5, h6 {
