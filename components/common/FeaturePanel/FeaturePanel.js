@@ -3,6 +3,7 @@ import Link from "next/link";
 import PropTypes from "prop-types";
 
 import Container from "./elements/Container";
+import InfoContainer from "./elements/InfoContainer";
 import H2 from "./elements/H2";
 import Description from "./elements/Description";
 import Feature from "./elements/Feature";
@@ -19,7 +20,7 @@ export const FeaturePanel = ({
   alternate,
 }) => {
   const infoContent = (
-    <>
+    <InfoContainer alternate={alternate}>
       <H2>{title}</H2>
       <Description>{renderDescription()}</Description>
       <ButtonContainer>
@@ -27,7 +28,7 @@ export const FeaturePanel = ({
           <Button dark>{linkText}</Button>
         </Link>
       </ButtonContainer>
-    </>
+    </InfoContainer>
   );
 
   const featureContent = <Feature>{renderFeature()}</Feature>;
