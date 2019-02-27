@@ -1,9 +1,9 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "react-style-reset/string";
-
+import ghCss from "github-markdown-css";
 export const GlobalStyle = createGlobalStyle`
   ${reset};
-
+  ${ghCss};
   * {
     box-sizing: border-box;
   }

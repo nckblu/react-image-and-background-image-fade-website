@@ -1,6 +1,7 @@
 import React from "react";
-import DocPage from "../../components/common/DocPage";
+import DocPage from "../../components/docs/DocPage";
+
 export const Docs = () => {
-  return <DocPage title="docs" />;
+  return <DocPage title="docs" id={1} />;
 };
 export default Docs;
