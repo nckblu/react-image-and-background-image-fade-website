@@ -23,6 +23,24 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
   }
 
+  .markdown-body h1,
+  .markdown-body h2,
+  .markdown-body h3,
+  .markdown-body h4,
+  .markdown-body h5,
+  .markdown-body h6 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+  }
+
+  .markdown-body p {
+    font-family: "Montserrat", sans-serif;
+  }
+  
+  .markdown-body li {
+    font-family: "Montserrat", sans-serif;
+    list-style-type: square;
+  }
   a {
     color: ${props => props.theme.main};
   }

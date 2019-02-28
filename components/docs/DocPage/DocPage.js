@@ -11,7 +11,6 @@ import Markdown from "markdown-to-jsx";
 export const DocPage = ({ title, id }) => {
   const activeItem = docNavItems.find(items => items.id === id);
   const { md } = activeItem;
-  console.log("md", md);
   return (
     <Wrapper title={title}>
       <Header title={title} image="/static/images/docs/1.jpg" />
@@ -19,7 +18,19 @@ export const DocPage = ({ title, id }) => {
         <DocNav items={docNavItems} activeId={id} />
         <Main>
           <div className="markdown-body">
-            <Markdown>{md}</Markdown>
+            <Markdown
+              options={
+                {
+                  // overrides: {
+                  //   Image: {
+                  //     // component: Image,
+                  //   },
+                  // },
+                }
+              }
+            >
+              {md}
+            </Markdown>
           </div>
         </Main>
       </Container>
