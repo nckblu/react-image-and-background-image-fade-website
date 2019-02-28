@@ -1,6 +1,6 @@
 # Image
 
-## <a id="image--basicUsage"></a>Basic usage
+## <a id="basicUsage"></a>Basic usage
 
 Note here that all unknown props like `alt` and `title` are passed through to the resulting `img` element.
 
@@ -22,7 +22,7 @@ class Example extends Component {
 }
 ```
 
-## <a id="image--responsive"></a>Responsive
+## <a id="responsive"></a>Responsive
 
 When using the `isResponsive` you must ensure that both the width and height are in pixel format, this is because Image calculates the aspect ratio based on the image's width and height. The resulting element will have a width set to 100% and will fill the parent container.
 
@@ -43,7 +43,7 @@ class Example extends Component {
 }
 ```
 
-## <a id="image--lazyLoading"></a> Lazy loading
+## <a id="lazyLoading"></a> Lazy loading
 
 Internally React Image and Background Image Fade makes use of [Visibility Sensor](https://github.com/joshwnj/react-visibility-sensor). When using `lazyLoad` the image will begin loading as soon as the image is partially visible in the viewport.
 
@@ -64,7 +64,7 @@ class Example extends Component {
 }
 ```
 
-## <a id="image--customLoaders"></a> Custom loaders
+## <a id="customLoaders"></a> Custom loaders
 
 React Image and Background Image Fade shows a default loader when none is provided which a plain light grey element with an animated 'shine', similar to how Facebook decorate their loading skeletons. You can however specify your own loader element using the `renderLoader` render prop. This expects a function that renders your custom loader.
 
@@ -99,7 +99,7 @@ class Example extends Component {
 }
 ```
 
-## <a id="image--props"></a>`Image` Props
+## <a id="props"></a> Props
 
 All initial prop values are undefined unless otherwise specified. `src`, `width` and `height` are the only required props.
 

@@ -1,6 +1,6 @@
 # ImageLoader
 
-## <a id="imageLoader--overview"></a>Overview
+## <a id="overview"></a>Overview
 
 Both `Image` and `BackgroundImage` make use of `ImageLoader` internally. It can be useful for creating your own loader and any advanced use case that the other two components can't cater for.
 
@@ -48,7 +48,7 @@ class AwesomeOLoader extends Component {
 }
 ```
 
-## <a id="imageLoader--props"></a> `ImageLoader` Props
+## <a id="props"></a> Props
 
 All initial prop values are undefined unless otherwise specified. `src` and `children`.
 
