@@ -8,6 +8,7 @@
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
     "github-markdown-css": "^3.0.1",
+    "markdown-to-jsx": "^6.9.1",
     "next": "^8.0.3",
     "prop-types": "^15.7.2",
     "react": "^16.8.3",

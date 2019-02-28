@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ReactMarkdown from "react-markdown/with-html";
 import Wrapper from "../../common/Wrapper";
 import Header from "../Header";
 import DocNav from "../DocNav";
 import Container from "./elements/Container";
 import Main from "./elements/Main";
 import docNavItems from "./docNavItems";
+import Markdown from "markdown-to-jsx";
 
 export const DocPage = ({ title, id }) => {
   const activeItem = docNavItems.find(items => items.id === id);
@@ -18,7 +18,9 @@ export const DocPage = ({ title, id }) => {
       <Container>
         <DocNav items={docNavItems} activeId={id} />
         <Main>
-          <ReactMarkdown source={md} escapeHtml={false} />
+          <div className="markdown-body">
+            <Markdown>{md}</Markdown>
+          </div>
         </Main>
       </Container>
     </Wrapper>
