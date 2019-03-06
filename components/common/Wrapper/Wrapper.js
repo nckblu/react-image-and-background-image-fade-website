@@ -4,12 +4,13 @@ import { ThemeProvider } from "styled-components";
 import Head from "../Head";
 import StyledWrapper from "./elements/Wrapper";
 import GlobalStyle from "./elements/GlobalStyle";
-// import Bar from "./elements/Bar";
 import theme from "./theme";
+import MainNav from "../MainNav";
 
 export const Wrapper = ({ pageTitle, children }) => (
   <ThemeProvider theme={theme}>
     <StyledWrapper>
+      <MainNav />
       <Head title={pageTitle} />
       <GlobalStyle />
       {children}
