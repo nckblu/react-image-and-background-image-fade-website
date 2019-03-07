@@ -1,19 +1,20 @@
 import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
+import { withRouter } from "next/router";
+import NavLink from "./NavLink";
 
 export const MainNav = () => {
   return (
     <Wrapper>
       <Container>
-        <Link href="/">react image and background image fade</Link>
+        <HomeLink>
+          <Link href="/">react image and background image fade</Link>
+        </HomeLink>
+        <Block />
         <Right>
-          <NavItem>
-            <Link href="/docs">docs </Link>
-          </NavItem>
-          <NavItem>
-            <Link href="/demos">demos </Link>
-          </NavItem>
+          <NavLink href="/docs">docs</NavLink>
+          <NavLink href="/demos">demos</NavLink>
         </Right>
       </Container>
     </Wrapper>
@@ -22,7 +23,6 @@ export const MainNav = () => {
 
 const Wrapper = styled.div`
   height: 75px;
-  background: #000;
   position: fixed;
   left: 0;
   top: 0;
@@ -36,15 +36,23 @@ const Wrapper = styled.div`
   }
 `;
 
+const HomeLink = styled.div`
+  background: #000;
+  height: 100%;
+  display: flex;
+  align-items: center;
+`;
+
+const Block = styled.div`
+  flex-grow: 1;
+  background: #000;
+  height: 100%;
+`;
+
 const Right = styled.div`
   margin-left: auto;
   display: flex;
-`;
-
-const NavItem = styled.div`
-  a {
-    padding: 0 20px;
-  }
+  height: 100%;
 `;
 
 const Container = styled.div`
@@ -54,6 +62,25 @@ const Container = styled.div`
   align-items: center;
   height: 100%;
   padding: 0 30px;
+  position: relative;
+
+  &:after,
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 2000px;
+    height: 100%;
+    background: #000;
+  }
+
+  &:before {
+    left: -1970px;
+  }
+
+  &:after {
+    right: -1970px;
+  }
 `;
 
-export default MainNav;
+export default withRouter(MainNav);
