@@ -3,10 +3,9 @@ import styled from "styled-components";
 export const NavItem = styled.div`
   text-decoration: none;
   color: ${props => props.theme.main};
-  font-weight: 700;
-  font-size: 21px;
+  font-size: 18px;
   cursor: pointer;
-  margin-right: 60px;
+  margin-right: 25px;
   opacity: 0.3;
   transition: opacity 0.3s ease;
 

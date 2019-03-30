@@ -1,8 +1,11 @@
 import styled from "styled-components";
 
-export const Container = styled.nav`
+export const Nav = styled.nav`
   display: flex;
-  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: flex-end;
+  padding-top: 22px;
 `;
 
-export default Container;
+export default Nav;

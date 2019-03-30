@@ -3,23 +3,57 @@ import Link from "next/link";
 import styled from "styled-components";
 import { withRouter } from "next/router";
 import NavLink from "./NavLink";
+import { docNavItems } from "../../docs/DocPage/docNavItems";
+import Header from "../../docs/Header";
 
-export const MainNav = () => {
-  return (
-    <Wrapper>
-      <Container>
-        <HomeLink>
-          <Link href="/">react image and background image fade</Link>
-        </HomeLink>
-        <Block />
-        <Right>
-          <NavLink href="/docs">docs</NavLink>
-          <NavLink href="/demos">demos</NavLink>
-        </Right>
-      </Container>
-    </Wrapper>
-  );
-};
+export class MainNav extends React.PureComponent {
+  state = {
+    headerIsExpanded: false,
+  };
+
+  render() {
+    const { headerIsExpanded } = this.state;
+    return (
+      <Wrapper>
+        <Header
+          isExpanded={headerIsExpanded}
+          image="/static/images/docs/1.jpg"
+        />
+        <Container>
+          <HomeLink>
+            <Link href="/">react image and background image fade</Link>
+          </HomeLink>
+          <Block />
+          <Right>
+            <NavLink
+              href="/docs"
+              subNavItems={docNavItems}
+              onMouseEnter={this.handleMouseOver}
+              onMouseLeave={this.handleMouseOut}
+            >
+              <span>docs</span>
+            </NavLink>
+            <NavLink href="/demos">
+              <span>demos</span>
+            </NavLink>
+          </Right>
+        </Container>
+      </Wrapper>
+    );
+  }
+
+  handleMouseOver = e => {
+    e.stopPropagation();
+    if (this.state.headerIsExpanded) return;
+    this.setState({ headerIsExpanded: true });
+  };
+
+  handleMouseOut = e => {
+    e.stopPropagation();
+    if (!this.state.headerIsExpanded) return;
+    this.setState({ headerIsExpanded: false });
+  };
+}
 
 const Wrapper = styled.div`
   height: 75px;
@@ -30,7 +64,6 @@ const Wrapper = styled.div`
   z-index: 2;
 
   a {
-    display: block;
     text-decoration: none;
     color: #fff;
   }
@@ -49,10 +82,13 @@ const Block = styled.div`
   height: 100%;
 `;
 
-const Right = styled.div`
-  margin-left: auto;
+const Right = styled.ul`
   display: flex;
   height: 100%;
+  list-style: none;
+  margin: 0;
+  margin-left: auto;
+  padding: 0;
 `;
 
 const Container = styled.div`
