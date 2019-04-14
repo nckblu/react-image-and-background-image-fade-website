@@ -56,6 +56,7 @@ const NavItem = styled.li`
     }
     > ul {
       display: block;
+      z-index: 5;
 
       > div {
         &:before {

@@ -37,7 +37,7 @@ const Wrapper = styled.div`
   left: 0;
   top: 0;
   width: 100%;
-  z-index: 2;
+  z-index: 20;
 
   a {
     text-decoration: none;

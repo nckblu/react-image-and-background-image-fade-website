@@ -1,5 +1,5 @@
 import OverviewMd from "../../../md/demo/overview.md";
-import ImageMd from "../../../md/image.md";
+import ImageMd from "../../../md/demo/image.md";
 import BackgroundImageMd from "../../../md/background-image.md";
 import ImageLoaderMd from "../../../md/image-loader.md";
 
@@ -13,7 +13,7 @@ export const demoNavItems = [
   {
     id: 6,
     title: "Image",
-    href: "/docs/image",
+    href: "/demos/image",
     md: ImageMd,
   },
   {

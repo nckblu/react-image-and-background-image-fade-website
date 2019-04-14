@@ -44,6 +44,16 @@ export const GlobalStyle = createGlobalStyle`
   a {
     color: ${props => props.theme.main};
   }
+
+  .image {
+    background-size: cover;
+    background-position: center top;
+  }
+
+  .image-static {
+    width: 100%;
+    height: auto;
+  }
 `;
 
 export default GlobalStyle;

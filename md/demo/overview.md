@@ -12,7 +12,30 @@
   />
 </Demo>
 
+## Basic usage - BackgroundImage
+
+<Demo link="https://codesandbox.io/s/3x9zz7y3yq">
+  <BackgroundImage
+    src="https://source.unsplash.com/random/800x601"
+    width="800px"
+    height="350px"
+    isResponsive
+    className="image"
+  />
+</Demo>
+
 ## Lazy loading
+
+<Demo link="https://codesandbox.io/s/l5nq9n7o2z">
+  <BackgroundImage
+    src="https://source.unsplash.com/random/800x602"
+    width="800px"
+    height="350px"
+    isResponsive
+    lazyLoad
+    className="image"
+  />
+</Demo>
 
 ## Component demos
 

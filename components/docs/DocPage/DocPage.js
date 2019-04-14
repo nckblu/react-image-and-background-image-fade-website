@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Wrapper from "../../common/Wrapper";
 import Container from "./elements/Container";
 import Main from "./elements/Main";
-import { Image } from "react-image-and-background-image-fade";
+import { Image, BackgroundImage } from "react-image-and-background-image-fade";
 import docNavItems from "./docNavItems";
 import demoNavItems from "./demoNavItems";
 import Markdown from "markdown-to-jsx";
@@ -24,6 +24,9 @@ export const DocPage = ({ title, id }) => {
                 overrides: {
                   Image: {
                     component: Image,
+                  },
+                  BackgroundImage: {
+                    component: BackgroundImage,
                   },
                   Demo: {
                     component: Demo,
