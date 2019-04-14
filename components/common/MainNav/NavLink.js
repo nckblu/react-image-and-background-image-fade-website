@@ -5,28 +5,23 @@ import Link from "next/link";
 import styled from "styled-components";
 import SubNavLink from "./SubNavLink";
 
-const NavLink = ({
-  router,
-  children,
-  subNavItems,
-  onMouseEnter,
-  onMouseLeave,
-  ...props
-}) => {
-  const isActive = router.pathname === props.href;
+const NavLink = ({ router, children, subNavItems, ...props }) => {
+  const isActive = router.pathname.indexOf(props.href) > -1;
   const WrapperNavItem = isActive ? ActiveNavItem : NavItem;
   return (
-    <WrapperNavItem onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+    <WrapperNavItem>
       <Link {...props}>
         <a>{children}</a>
       </Link>
       {!!subNavItems && !!subNavItems.length && (
         <SubNav>
-          {subNavItems.map(subNavItem => (
-            <SubNavLink href={subNavItem.href}>
-              <span>{subNavItem.title}</span>
-            </SubNavLink>
-          ))}
+          <Inner>
+            {subNavItems.map(subNavItem => (
+              <SubNavLink href={subNavItem.href}>
+                <span>{subNavItem.title}</span>
+              </SubNavLink>
+            ))}
+          </Inner>
         </SubNav>
       )}
     </WrapperNavItem>
@@ -36,7 +31,7 @@ const NavLink = ({
 const NavItem = styled.li`
   position: relative;
 
-  a {
+  > a {
     padding: 0 20px;
     position: relative;
     width: 100%;
@@ -44,22 +39,87 @@ const NavItem = styled.li`
     display: flex;
     align-items: center;
     background: #000;
+    color: white;
 
     span {
       display: block;
     }
   }
+
+  &:hover {
+    background: #ddd;
+    color: black;
+
+    > a {
+      background: #ddd;
+      color: black;
+    }
+    > ul {
+      display: block;
+
+      > div {
+        &:before {
+          background: #ddd;
+        }
+      }
+
+      > div > li {
+        background: #ddd;
+      }
+    }
+  }
 `;
 
 const ActiveNavItem = styled(NavItem)`
-  a {
-    background: transparent;
+  > a {
+    background: #eee;
+    color: black;
+  }
+
+  &:hover {
+    > a {
+      background: #eee;
+      color: black;
+    }
+  }
+
+  > ul {
+    display: block;
+  }
+
+  &:hover > ul {
+    display: block;
+    background: #eee;
+
+    > div {
+      &:before {
+        background: #eee;
+      }
+    }
+
+    > div > li {
+      background: #eee;
+    }
+  }
+`;
+
+const Inner = styled.div`
+  position: relative;
+  display: flex;
+
+  &:before {
+    content: "";
+    position: absolute;
+    right: -20000px;
+    height: 100%;
+    background: #eee;
+    top: 0;
+    width: 40000px;
   }
 `;
 
 const SubNav = styled.ul`
-  /* display: none; */
-  display: flex;
+  display: none;
   position: absolute;
   right: 0;
   bottom: -50px;

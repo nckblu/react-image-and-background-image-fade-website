@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Wrapper from "../../common/Wrapper";
-import Header from "../Header";
 import Container from "./elements/Container";
 import Main from "./elements/Main";
 import docNavItems from "./docNavItems";

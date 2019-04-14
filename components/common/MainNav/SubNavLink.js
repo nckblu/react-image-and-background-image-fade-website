@@ -27,11 +27,14 @@ const SubNavLink = ({ router, children, ...props }) => {
 };
 
 const NavItem = styled.li`
+  background: #eee;
+
   a {
     padding: 0 20px;
     position: relative;
     width: 100%;
     height: 50px;
+    background: #eee;
     color: black;
     display: flex;
     align-items: center;
@@ -45,7 +48,8 @@ const NavItem = styled.li`
 
 const ActiveNavItem = styled(NavItem)`
   a {
-    background: transparent;
+    background: #eee;
+    color: black;
   }
 `;
 

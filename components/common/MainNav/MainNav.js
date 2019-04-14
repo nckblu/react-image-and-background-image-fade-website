@@ -4,36 +4,24 @@ import styled from "styled-components";
 import { withRouter } from "next/router";
 import NavLink from "./NavLink";
 import { docNavItems } from "../../docs/DocPage/docNavItems";
+import { demoNavItems } from "../../docs/DocPage/demoNavItems";
 import Header from "../../docs/Header";
 
 export class MainNav extends React.PureComponent {
-  state = {
-    headerIsExpanded: false,
-  };
-
   render() {
-    const { headerIsExpanded } = this.state;
     return (
       <Wrapper>
-        <Header
-          isExpanded={headerIsExpanded}
-          image="/static/images/docs/1.jpg"
-        />
+        <Header image="/static/images/docs/1.jpg" />
         <Container>
           <HomeLink>
             <Link href="/">react image and background image fade</Link>
           </HomeLink>
           <Block />
           <Right>
-            <NavLink
-              href="/docs"
-              subNavItems={docNavItems}
-              onMouseEnter={this.handleMouseOver}
-              onMouseLeave={this.handleMouseOut}
-            >
+            <NavLink href="/docs" subNavItems={docNavItems}>
               <span>docs</span>
             </NavLink>
-            <NavLink href="/demos">
+            <NavLink href="/demos" subNavItems={demoNavItems}>
               <span>demos</span>
             </NavLink>
           </Right>
@@ -41,18 +29,6 @@ export class MainNav extends React.PureComponent {
       </Wrapper>
     );
   }
-
-  handleMouseOver = e => {
-    e.stopPropagation();
-    if (this.state.headerIsExpanded) return;
-    this.setState({ headerIsExpanded: true });
-  };
-
-  handleMouseOut = e => {
-    e.stopPropagation();
-    if (!this.state.headerIsExpanded) return;
-    this.setState({ headerIsExpanded: false });
-  };
 }
 
 const Wrapper = styled.div`
@@ -65,7 +41,6 @@ const Wrapper = styled.div`
 
   a {
     text-decoration: none;
-    color: #fff;
   }
 `;
 
@@ -74,6 +49,9 @@ const HomeLink = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
+  a {
+    color: white;
+  }
 `;
 
 const Block = styled.div`
