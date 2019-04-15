@@ -38,24 +38,4 @@
 
 ## Custom loaders
 
-<Demo link="https://codesandbox.io/s/k3z36k7r0r">
-  <Image
-    src="https://source.unsplash.com/random/800x350"
-    width="800px"
-    height="350px"
-    isResponsive
-    lazyLoad
-    className="image"
-    renderLoader={({ hasLoaded, hasFailed }) => (
-      <div className="custom-loader">
-        <BounceyLoader />
-      </div>
-    )}
-  />
-</Demo>
-
-## Component demos
-
-- [Image](/demos/image)
-- [BackgroundImage](/demos/background-image)
-- [ImageLoader](/demos/image-loader)
+<ImageCustomLoaderDemo />

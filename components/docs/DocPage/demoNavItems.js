@@ -1,7 +1,7 @@
 import OverviewMd from "../../../md/demo/overview.md";
 import ImageMd from "../../../md/demo/image.md";
-import BackgroundImageMd from "../../../md/background-image.md";
-import ImageLoaderMd from "../../../md/image-loader.md";
+import BackgroundImageMd from "../../../md/demo/background-image.md";
+import ImageLoaderMd from "../../../md/demo/image-loader.md";
 
 export const demoNavItems = [
   {
@@ -19,13 +19,13 @@ export const demoNavItems = [
   {
     id: 7,
     title: "BackgroundImage",
-    href: "/docs/background-image",
+    href: "/demos/background-image",
     md: BackgroundImageMd,
   },
   {
     id: 8,
     title: "ImageLoader",
-    href: "/docs/image-loader",
+    href: "/demos/image-loader",
     md: ImageLoaderMd,
   },
 ];

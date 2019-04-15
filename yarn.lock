@@ -4143,6 +4143,10 @@ react-lifecycles-compat@^3.0.2:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
 
+react-loaders-spinners@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/react-loaders-spinners/-/react-loaders-spinners-0.4.0.tgz#0c7ad77b0db16eb2e4dd1166d4006f22f6f584b5"
+
 react-markdown@^4.0.6:
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/react-markdown/-/react-markdown-4.0.6.tgz#927d44421735cd90b7634bb221e9d7d8656e01e9"

@@ -54,6 +54,15 @@ export const GlobalStyle = createGlobalStyle`
     width: 100%;
     height: auto;
   }
+
+  .custom-loader {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: auto;
+    left: 45%;
+  }
+
 `;
 
 export default GlobalStyle;

@@ -8,6 +8,8 @@ import docNavItems from "./docNavItems";
 import demoNavItems from "./demoNavItems";
 import Markdown from "markdown-to-jsx";
 import Demo from "../../common/Demo";
+import { ImageCustomLoaderDemo } from "../../common/Demo/ImageCustomLoaderDemo";
+import { BackgroundImageCustomLoaderDemo } from "../../common/Demo/BackgroundImageCustomLoaderDemo";
 
 export const DocPage = ({ title, id }) => {
   const activeItem = docNavItems
@@ -30,6 +32,12 @@ export const DocPage = ({ title, id }) => {
                   },
                   Demo: {
                     component: Demo,
+                  },
+                  ImageCustomLoaderDemo: {
+                    component: ImageCustomLoaderDemo,
+                  },
+                  BackgroundImageCustomLoaderDemo: {
+                    component: BackgroundImageCustomLoaderDemo,
                   },
                 },
               }}
