@@ -1,38 +1,41 @@
-import React from "react";
-import Link from "next/link";
-import { BarLoader } from "react-spinners";
-import Wrapper from "../components/common/Wrapper";
-import Header from "../components/home/Header";
-import HeaderBackgroundImage from "../elements/home/HeaderBackgroundImage";
-import FeatureBackgroundImage from "../elements/home/FeatureBackgroundImage";
-import HeaderContent from "../elements/home/HeaderContent";
-import HeaderH1 from "../elements/home/HeaderH1";
-import HeaderContentButtons from "../elements/home/HeaderContentButtons";
-import Button from "../elements/common/Button";
-import FeaturePanelContainer from "../elements/home/FeaturePanelContainer";
-import FeaturePanel from "../components/common/FeaturePanel";
-import FeatureLoaderContainer from "../elements/home/FeatureLoaderContainer";
+import React from 'react'
+import Link from 'next/link'
+import { BarLoader } from 'react-spinners'
+import Wrapper from '../components/common/Wrapper'
+import Header from '../components/home/Header'
+import HeaderBackgroundImage from '../elements/home/HeaderBackgroundImage'
+import FeatureBackgroundImage from '../elements/home/FeatureBackgroundImage'
+import HeaderContent from '../elements/home/HeaderContent'
+import HeaderH1 from '../elements/home/HeaderH1'
+import HeaderContentButtons from '../elements/home/HeaderContentButtons'
+import Button from '../elements/common/Button'
+import FeaturePanelContainer from '../elements/home/FeaturePanelContainer'
+import FeaturePanel from '../components/common/FeaturePanel'
+import FeatureLoaderContainer from '../elements/home/FeatureLoaderContainer'
 
 export const Home = () => (
   <Wrapper>
     <Header>
       <HeaderBackgroundImage
-        width="100%"
-        height="100%"
-        src="/static/images/home/header.jpg"
+        width='100%'
+        height='100%'
+        src='/static/images/home/header.jpg'
       >
         <HeaderContent>
           <HeaderH1>
             react image and <br /> background image fade
           </HeaderH1>
           <HeaderContentButtons>
-            <Link href="/test">
+            <a
+              href='https://github.com/nckblu/react-image-and-background-image-fade'
+              target='_blank'
+            >
               <Button light>github</Button>
-            </Link>
-            <Link href="/docs">
+            </a>
+            <Link href='/docs'>
               <Button light>docs</Button>
             </Link>
-            <Link href="/test">
+            <Link href='/demos'>
               <Button light>demos</Button>
             </Link>
           </HeaderContentButtons>
@@ -41,7 +44,7 @@ export const Home = () => (
     </Header>
     <FeaturePanelContainer>
       <FeaturePanel
-        title="features"
+        title='features'
         renderDescription={() => (
           <ul>
             <li>Fade in images and background images</li>
@@ -53,66 +56,66 @@ export const Home = () => (
         )}
         renderFeature={() => (
           <FeatureBackgroundImage
-            src="/static/images/home/feature1.jpg"
-            width="836px"
-            height="668px"
+            src='/static/images/home/feature1.jpg'
+            width='836px'
+            height='668px'
             isResponsive
           />
         )}
-        link="/test"
-        linkText="see docs"
+        link='/docs'
+        linkText='see docs'
       />
       <FeaturePanel
-        title="lazy loading"
+        title='lazy loading'
         renderDescription={() =>
-          "Lazy loading out of the box using React Visibility Sensor"
+          'Lazy loading out of the box using React Visibility Sensor'
         }
         renderFeature={() => (
           <FeatureBackgroundImage
-            src="/static/images/home/feature2.jpg"
-            width="836px"
-            height="668px"
+            src='/static/images/home/feature2.jpg'
+            width='836px'
+            height='668px'
             isResponsive
             lazyLoad
           />
         )}
-        link="/test"
-        linkText="see docs"
+        link='/docs'
+        linkText='see docs'
         alternate
       />
       <FeaturePanel
-        title="custom loaders"
+        title='custom loaders'
         renderDescription={() =>
-          "Lazy loading out of the box using React Visibility Sensor"
+          'Lazy loading out of the box using React Visibility Sensor'
         }
         renderFeature={() => (
           <FeatureLoaderContainer>
             <BarLoader width={190} height={11} />
           </FeatureLoaderContainer>
         )}
-        link="/test"
-        linkText="see docs"
+        link='/docs'
+        linkText='see docs'
       />
       <FeaturePanel
-        title="custom loaders"
+        title='custom loaders'
         renderDescription={() =>
-          "Lazy loading out of the box using React Visibility Sensor"
+          'Lazy loading out of the box using React Visibility Sensor'
         }
         renderFeature={() => (
           <FeatureBackgroundImage
-            src="/static/images/home/feature3.jpg"
-            width="836px"
-            height="668px"
+            src='/static/images/home/feature3.jpg'
+            width='836px'
+            height='668px'
             isResponsive
             lazyLoad
           />
         )}
-        link="/test"
-        linkText="see docs"
+        link='/docs'
+        linkText='see docs'
         alternate
       />
     </FeaturePanelContainer>
   </Wrapper>
-);
+)
 
-export default Home;
+export default Home
