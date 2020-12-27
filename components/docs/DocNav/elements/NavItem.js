@@ -1,8 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const NavItem = styled.div`
   text-decoration: none;
-  color: ${props => props.theme.main};
+  color: #000;
   font-size: 18px;
   cursor: pointer;
   margin-right: 25px;
@@ -28,6 +28,6 @@ export const NavItem = styled.div`
     `
   margin-right: 0;
   `}
-`;
+`
 
-export default NavItem;
+export default NavItem

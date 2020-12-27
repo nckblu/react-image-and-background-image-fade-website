@@ -10,6 +10,8 @@
     "github-markdown-css": "^3.0.1",
     "markdown-to-jsx": "^6.9.1",
     "next": "^8.0.3",
+    "next-google-fonts": "^1.2.1",
+    "next-transpile-modules": "^6.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
@@ -24,7 +26,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
-    "babel-plugin-styled-components": "^1.10.0",
+    "babel-plugin-styled-components": "^1.12.0",
     "eslint": "^5.14.1",
     "eslint-config-prettier": "^4.0.0",
     "eslint-config-standard": "^12.0.0",

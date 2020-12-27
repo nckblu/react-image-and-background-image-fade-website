@@ -1,6 +1,5 @@
 import React from 'react'
 import Link from 'next/link'
-import { BarLoader } from 'react-spinners'
 import Wrapper from '../components/common/Wrapper'
 import Header from '../components/home/Header'
 import HeaderBackgroundImage from '../elements/home/HeaderBackgroundImage'
@@ -83,23 +82,11 @@ export const Home = () => (
         linkText='see docs'
         alternate
       />
+
       <FeaturePanel
         title='custom loaders'
         renderDescription={() =>
-          'Lazy loading out of the box using React Visibility Sensor'
-        }
-        renderFeature={() => (
-          <FeatureLoaderContainer>
-            <BarLoader width={190} height={11} />
-          </FeatureLoaderContainer>
-        )}
-        link='/docs'
-        linkText='see docs'
-      />
-      <FeaturePanel
-        title='custom loaders'
-        renderDescription={() =>
-          'Lazy loading out of the box using React Visibility Sensor'
+          'Use the default loader or any component you like'
         }
         renderFeature={() => (
           <FeatureBackgroundImage
@@ -112,7 +99,6 @@ export const Home = () => (
         )}
         link='/docs'
         linkText='see docs'
-        alternate
       />
     </FeaturePanelContainer>
   </Wrapper>

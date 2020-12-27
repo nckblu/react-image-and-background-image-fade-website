@@ -1,6 +1,6 @@
-import { createGlobalStyle } from "styled-components";
-import reset from "react-style-reset/string";
-import ghCss from "github-markdown-css";
+import { createGlobalStyle } from 'styled-components'
+import reset from 'react-style-reset/string'
+import ghCss from 'github-markdown-css'
 export const GlobalStyle = createGlobalStyle`
   ${reset};
   ${ghCss};
@@ -12,7 +12,7 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 18px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: ${props => props.theme.main};
+    color: #000;
     font-family: "Montserrat", sans-serif;
     line-height: 1.4;
   }
@@ -42,7 +42,7 @@ export const GlobalStyle = createGlobalStyle`
     list-style-type: square;
   }
   a {
-    color: ${props => props.theme.main};
+    color: #000;
   }
 
   .image {
@@ -63,6 +63,6 @@ export const GlobalStyle = createGlobalStyle`
     left: 45%;
   }
 
-`;
+`
 
-export default GlobalStyle;
+export default GlobalStyle
