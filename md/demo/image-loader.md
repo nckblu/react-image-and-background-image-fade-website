@@ -1,5 +1,3 @@
 # Image Loader
 
-## Basic usage
-
-<ImageLoaderDemo />
+## Coming soon
