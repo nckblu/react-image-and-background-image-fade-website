@@ -1,0 +1,26 @@
+import { defineConfig, devices } from '@playwright/test'
+
+export default defineConfig({
+  testDir: './tests/e2e',
+  fullyParallel: true,
+  webServer: {
+    command: 'npm run build && npx serve out -l 3006',
+    url: 'http://127.0.0.1:3006',
+    reuseExistingServer: !process.env.CI,
+    timeout: 120_000
+  },
+  use: {
+    baseURL: 'http://127.0.0.1:3006',
+    trace: 'on-first-retry'
+  },
+  projects: [
+    {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] }
+    },
+    {
+      name: 'mobile',
+      use: { ...devices['iPhone 15'], browserName: 'chromium' }
+    }
+  ]
+})

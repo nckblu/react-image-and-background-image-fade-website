@@ -1,0 +1,62 @@
+.wrap {
+  background: #111116;
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 7px 7px 0 var(--line);
+  color: #f6f0df;
+  margin: 1rem 0;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.wrap:hover {
+  box-shadow: 9px 9px 0 var(--line);
+  transform: translate(-1px, -1px);
+}
+
+.bar {
+  align-items: center;
+  background: var(--acid);
+  border-bottom: 2px solid var(--line);
+  color: var(--ink);
+  display: flex;
+  font-size: 0.75rem;
+  font-weight: 950;
+  justify-content: space-between;
+  letter-spacing: 0.06em;
+  padding: 0.5rem 0.75rem;
+  text-transform: uppercase;
+}
+
+.copyButton {
+  align-items: center;
+  background: rgb(0 0 0 / 8%);
+  border: 1.5px solid rgb(0 0 0 / 15%);
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 0.7rem;
+  font-weight: 900;
+  gap: 0.35rem;
+  letter-spacing: 0.06em;
+  padding: 0.3rem 0.55rem;
+  text-transform: uppercase;
+  transition: background 0.15s ease;
+}
+
+.copyButton:hover {
+  background: rgb(0 0 0 / 15%);
+}
+
+.pre {
+  margin: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 1rem;
+}
+
+.code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.82rem;
+  line-height: 1.65;
+}

@@ -1,0 +1,75 @@
+# react-image-and-background-image-fade
+
+A slick, dependency-free React package for elegantly fading in images and CSS backgrounds as they load, with built-in placeholders (skeleton, blur, color) and responsive srcSet generation.
+
+## Installation
+`npm install react-image-and-background-image-fade`
+
+## Usage
+
+### 1. Global CSS
+Import the styles once in your app entry point (e.g., `layout.tsx` or `App.tsx`):
+```tsx
+import 'react-image-and-background-image-fade/styles.css'
+```
+
+### 2. Standard Responsive Image
+Use the `<Image>` component as a drop-in replacement for standard `<img>` tags.
+```tsx
+import { Image } from 'react-image-and-background-image-fade'
+
+function MyComponent() {
+  return (
+    <Image
+      src="/photo.jpg"
+      alt="Description"
+      width={1200}
+      height={800}
+      placeholder="skeleton" // Options: 'skeleton', 'blur', 'color', 'none'
+      duration={500} // Fade duration in ms
+      lazy={true} // Uses native loading="lazy"
+    />
+  )
+}
+```
+
+### 3. Background Images
+Use `<BackgroundImage>` to apply a preloaded, fading background to a container.
+```tsx
+import { BackgroundImage } from 'react-image-and-background-image-fade'
+
+function HeroSection() {
+  return (
+    <BackgroundImage
+      src="/hero.jpg"
+      width="100%"
+      height="400px"
+      fit="cover" // background-size
+      position="center" // background-position
+      placeholder="color"
+      color="#1a1a1a" // Fallback color while loading
+    >
+      <h1>Layered Content Here</h1>
+    </BackgroundImage>
+  )
+}
+```
+
+### 4. Custom Loading Hooks
+If you need to build custom loading UI, use `useImage`:
+```tsx
+import { useImage } from 'react-image-and-background-image-fade'
+
+function CustomLoader() {
+  const { status, src } = useImage({ src: '/heavy.jpg' })
+  
+  if (status === 'loading') return <Spinner />
+  if (status === 'error') return <ErrorPlaceholder />
+  return <img src={src} />
+}
+```
+
+## AI Best Practices
+- **Always** include the `styles.css` import in the root.
+- Use `width` and `height` props to prevent cumulative layout shift (CLS).
+- For placeholders, `blur` requires a `blurDataURL` (typically a tiny base64 image). If unavailable, prefer `skeleton` or `color`.
