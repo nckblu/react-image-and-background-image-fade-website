@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { CodeBlock } from '@/components/CodeBlock'
+import { InlineDemo } from '@/components/InlineDemo'
 import { SiteShell } from '@/components/SiteShell'
 import { docs, docsNav } from '@/data/site'
 import { DocHero, DocsNav } from './DocsParts'
@@ -18,6 +19,7 @@ export default function DocsPage() {
             <section className={styles.section} key={section.title}>
               <h2>{section.title}</h2>
               <p>{section.body}</p>
+              <InlineDemo docSlug="overview" sectionTitle={section.title} />
               {section.code && <CodeBlock>{section.code}</CodeBlock>}
             </section>
           ))}

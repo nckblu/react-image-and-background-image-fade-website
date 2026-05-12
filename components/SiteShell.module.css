@@ -18,7 +18,7 @@
 
 .navWrap {
   left: 0;
-  padding: 1rem clamp(1.5rem, 5vw, 3rem);
+  padding: 1rem clamp(1rem, 5vw, 3rem);
   position: sticky;
   right: 0;
   top: 0;
@@ -46,7 +46,18 @@
   font-weight: 950;
   gap: 0.65rem;
   letter-spacing: -0.01em;
+  min-width: 0;
   text-decoration: none;
+}
+
+.brandFull {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.brandShort {
+  display: none;
 }
 
 .mark {
@@ -93,6 +104,12 @@
   transform: translateY(-1px);
 }
 
+.link[data-active='true'] {
+  background: var(--acid);
+  border-color: var(--line);
+  box-shadow: 2px 2px 0 var(--line);
+}
+
 .github {
   align-items: center;
   background: var(--ink);
@@ -110,7 +127,7 @@
 .main {
   margin: 0 auto;
   max-width: 1180px;
-  padding: 1rem clamp(1.5rem, 5vw, 3rem) 5rem;
+  padding: 1rem clamp(1rem, 5vw, 3rem) 5rem;
 }
 
 /* ── Footer ────────────────────────────────────── */
@@ -119,7 +136,7 @@
   margin: 5rem auto 0;
   max-width: 1180px;
   overflow: hidden;
-  padding: 0 clamp(1.5rem, 5vw, 3rem) 2rem;
+  padding: 0 clamp(1rem, 5vw, 3rem) 2rem;
   position: relative;
 }
 
@@ -185,5 +202,15 @@
   .footerInner {
     align-items: flex-start;
     flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .brandFull {
+    display: none;
+  }
+
+  .brandShort {
+    display: inline;
   }
 }

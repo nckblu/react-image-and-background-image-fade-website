@@ -16,6 +16,7 @@ export type NavItem = {
   title: string
   href: string
   description: string
+  docHref?: string
 }
 
 export type Feature = {
@@ -62,8 +63,8 @@ export const demosNav: NavItem[] = [
   { title: 'Image', href: '/demos/image', description: 'Placeholders, fade, lazy, and sizing.' },
   { title: 'BackgroundImage', href: '/demos/background-image', description: 'CSS background loading without the drama.' },
   { title: 'Picture', href: '/demos/picture', description: 'Format fallbacks and art direction.' },
-  { title: 'Provider', href: '/demos/provider', description: 'Global defaults with local overrides.' },
-  { title: 'Responsive', href: '/demos/responsive', description: 'Generated srcSet and sizes helpers.' }
+  { title: 'Provider', href: '/demos/provider', description: 'Global defaults with local overrides.', docHref: '/docs/shared-defaults' },
+  { title: 'Responsive', href: '/demos/responsive', description: 'Generated srcSet and sizes helpers.', docHref: '/docs/responsive-helpers' }
 ]
 
 export const features: Feature[] = [
@@ -89,7 +90,7 @@ export const features: Feature[] = [
   },
   {
     title: 'Skeleton shimmer with taste',
-    description: 'A clean default loader that respects reduced-motion preferences automatically.',
+    description: 'A polished, wide-gradient shimmer fully customisable with CSS variables. Speed, colour, and intensity — your call.',
     icon: Sparkles
   },
   {
@@ -111,11 +112,11 @@ export const docs: DocPage[] = [
     slug: 'overview',
     title: 'Overview',
     eyebrow: 'Start here',
-    description: 'Version 2 is a modern image loading toolkit for React: image elements, CSS backgrounds, placeholders, hooks, responsive helpers, and polished fade transitions.',
+    description: 'react image and background image fade v2 is a modern image loading toolkit for React: image elements, CSS backgrounds, placeholders, hooks, responsive helpers, and polished fade transitions.',
     sections: [
       {
         title: 'Install',
-        body: 'Install the package and import the optional stylesheet once. The stylesheet provides the default shimmer skeleton, blur placeholder, and fade classes.',
+        body: 'Install react image and background image fade and import the optional stylesheet once. The stylesheet provides the default premium shimmer skeleton, blur placeholder, and fade classes.',
         code: `npm install react-image-and-background-image-fade
 
 import 'react-image-and-background-image-fade/styles.css'`
@@ -125,15 +126,15 @@ import 'react-image-and-background-image-fade/styles.css'`
         body: 'Use Image when you want a normal accessible image with layout stability, a placeholder, and a fade-in.',
         code: `import { Image } from 'react-image-and-background-image-fade'
 
-export function Avatar() {
+export function QuickStartPreview() {
   return (
     <Image
-      src="/avatar.jpg"
-      alt="Nick"
-      width={320}
-      height={320}
+      src="/images/home/feature1.jpg"
+      alt="Quick start preview"
+      width={1080}
+      height={720}
       placeholder="skeleton"
-      lazy
+      fadeType="zoom-blur"
     />
   )
 }`
@@ -153,20 +154,33 @@ export function Avatar() {
       {
         title: 'Responsive image',
         body: 'Pass numeric dimensions for stable layout and native width/height attributes. Add srcSet and sizes when multiple asset widths are available.',
-        code: `<Image
-  src="/photo-1200.jpg"
+        code: `const srcSet = createSrcSet({
+  src: '/images/home/feature1.jpg',
+  widths: [480, 800, 1200],
+  quality: 82
+})
+
+<Image
+  src="/images/home/feature1.jpg"
   alt="Mountain sunrise"
   width={1200}
   height={800}
-  srcSet="/photo-640.jpg 640w, /photo-1200.jpg 1200w, /photo-1800.jpg 1800w"
+  srcSet={srcSet}
   sizes="(max-width: 768px) 100vw, 50vw"
   placeholder="skeleton"
-  lazy
 />`
       },
       {
         title: 'Placeholders',
-        body: 'Use skeleton, blur, color, empty, a React node, or a renderPlaceholder function. renderError handles broken images.'
+        body: 'Use skeleton, blur, color, empty, a React node, or a renderPlaceholder function. The default skeleton is layered and themeable, and blur now uses the final image as the blurred preview when no blurDataURL is supplied.',
+        code: `<Image
+  src="/images/home/feature3.jpg"
+  alt="Placeholder demo"
+  width={1080}
+  height={720}
+  placeholder="skeleton"
+  fadeType="blur-in"
+/>`
       }
     ]
   },
@@ -180,27 +194,32 @@ export function Avatar() {
         title: 'Hero backgrounds',
         body: 'Use width, height, or aspectRatio to reserve space. fit, position, and repeat map to background CSS.',
         code: `<BackgroundImage
-  src="/hero.jpg"
+  src="/images/home/header.jpg"
   width="100%"
-  aspectRatio="16 / 9"
+  height="100%"
   fit="cover"
   position="center"
   placeholder="color"
   color="#d8d8d8"
-  lazy={{ rootMargin: '400px 0px' }}
+  fadeType="soft-reveal"
 >
-  <h1>Background images still get the good loading treatment.</h1>
+  <div className="heroOverlay">
+    <h3>Real content over a preloaded background.</h3>
+  </div>
 </BackgroundImage>`
       },
       {
         title: 'Element control',
         body: 'Use as for the element type, or asChild to apply background behavior to your own element.',
-        code: `<BackgroundImage src="/card.jpg" as="section">
-  Content
-</BackgroundImage>
-
-<BackgroundImage src="/card.jpg" asChild>
-  <article className="card">Content</article>
+        code: `<BackgroundImage
+  src="/images/home/feature2.jpg"
+  asChild
+  placeholder="blur"
+  fadeType="zoom-blur"
+>
+  <article className="cardDemo">
+    <h3>asChild keeps your element</h3>
+  </article>
 </BackgroundImage>`
       }
     ]
@@ -215,13 +234,15 @@ export function Avatar() {
         title: 'Modern formats',
         body: 'Use sources for AVIF/WebP or media-specific art direction.',
         code: `<Picture
-  src="/landscape.jpg"
+  src="/images/home/feature1.jpg"
   alt="Wide landscape"
   width={1200}
   height={800}
+  placeholder="blur"
+  fadeType="soft-reveal"
   sources={[
-    { srcSet: '/landscape.avif 1200w', type: 'image/avif' },
-    { srcSet: '/landscape.webp 1200w', type: 'image/webp' }
+    { srcSet: '/images/home/feature2.jpg?wide=1', media: '(min-width: 900px)' },
+    { srcSet: '/images/home/feature1.jpg', type: 'image/webp' }
   ]}
 />`
       }
@@ -236,10 +257,10 @@ export function Avatar() {
       {
         title: 'Custom loading UI',
         body: 'The render prop exposes status, booleans, the loaded image, error, and whether the loader should remain mounted for the configured duration.',
-        code: `<ImageLoader src="/detail.jpg" duration={450}>
+        code: `<ImageLoader src="/images/home/feature3.jpg" duration={1500}>
   {state => (
-    <div>
-      {state.shouldShowLoader && <span>Loading</span>}
+    <div className="cardDemo">
+      {state.shouldShowLoader && <span>Custom loader status: {state.status}</span>}
       {state.hasLoaded && <img src={state.src} alt="Detail" />}
       {state.hasFailed && <span>Could not load image</span>}
     </div>
@@ -258,16 +279,31 @@ export function Avatar() {
         title: 'useImage',
         body: 'Load an image imperatively with state, retry, timeout, and reload support.',
         code: `const image = useImage({
-  src,
+  src: '/images/home/feature2.jpg',
   retry: 1,
   timeout: 8000
 })
 
-return <span>{image.status}</span>`
+return (
+  <div>
+    Status: {image.status}
+    <span>{image.isLoaded ? 'Loaded with useImage()' : 'Waiting for image state'}</span>
+  </div>
+)`
       },
       {
         title: 'useInView',
-        body: 'Gate loading or animations behind IntersectionObserver with rootMargin and threshold control.'
+        body: 'Gate loading or animations behind IntersectionObserver with rootMargin and threshold control.',
+        code: `const { ref, inView } = useInView<HTMLDivElement>({
+  rootMargin: '120px 0px',
+  triggerOnce: false
+})
+
+return (
+  <div ref={ref} data-active={inView}>
+    <span>{inView ? 'In view: true' : 'In view: false'}</span>
+  </div>
+)`
       }
     ]
   },
@@ -282,7 +318,7 @@ return <span>{image.status}</span>`
         title: 'createSrcSet and createSizes',
         body: 'The default helper appends w, q, and fm query parameters. Provide a custom loader for any CDN shape.',
         code: `const srcSet = createSrcSet({
-  src: 'https://images.example.com/photo.jpg',
+  src: '/images/home/feature1.jpg',
   widths: [480, 768, 1200, 1600],
   quality: 80
 })
@@ -309,13 +345,22 @@ const sizes = createSizes({
         body: 'Use this near the app root to keep placeholder, color, animation, and lazy settings consistent.',
         code: `<ImageConfigProvider
   value={{
-    placeholder: 'color',
-    color: '#edf0f3',
-    duration: 450,
-    lazy: { rootMargin: '300px 0px' }
+    placeholder: 'skeleton',
+    duration: 850,
+    fadeType: 'soft-reveal',
+    easing: easings.cinematic,
+    skeleton: {
+      baseColor: '#111318',
+      highlightColor: '#242936',
+      accentColor: 'rgb(255 61 129 / 38%)',
+      speed: 1100
+    }
   }}
 >
-  <Image src="/photo.jpg" alt="Photo" width={800} height={600} />
+  <Image src="/images/home/feature1.jpg" alt="Provider image" width={720} height={480} />
+  <BackgroundImage src="/images/home/feature2.jpg" width="100%" height={220}>
+    <h3>BackgroundImage inherits it</h3>
+  </BackgroundImage>
 </ImageConfigProvider>`
       }
     ]
@@ -328,11 +373,43 @@ const sizes = createSizes({
     sections: [
       {
         title: 'Skeleton shimmer',
-        body: 'The default skeleton is a light shimmer placeholder. It respects reduced-motion preferences automatically.',
-        code: `.galleryImage {
-  --ribif-duration: 450ms;
-  --ribif-easing: cubic-bezier(0.2, 0, 0, 1);
-}`
+        body: 'The default skeleton is a polished, wide-gradient shimmer. Customise it with CSS variables: --ribif-skeleton-bg, --ribif-shimmer-color, --ribif-shimmer-speed. It respects reduced-motion preferences automatically.',
+        code: `<Image
+  src="/images/home/feature3.jpg"
+  alt="Skeleton shimmer styling demo"
+  width={1080}
+  height={720}
+  placeholder="skeleton"
+  fadeType="zoom-blur"
+  placeholderStyle={{
+    '--ribif-skeleton-bg': '#111318',
+    '--ribif-skeleton-highlight': '#242936',
+    '--ribif-skeleton-accent': 'rgb(255 61 129 / 38%)',
+    '--ribif-shimmer-speed': '1.1s'
+  }}
+/>`
+      },
+      {
+        title: 'Typed skeleton themes',
+        body: 'Use the skeleton prop when you want component-level control without writing custom CSS.',
+        code: `<Image
+  src="/images/home/feature2.jpg"
+  alt="Typed skeleton theme demo"
+  width={1080}
+  height={720}
+  placeholder="skeleton"
+  fadeType="soft-reveal"
+  skeleton={{
+    baseColor: '#111318',
+    highlightColor: '#242936',
+    accentColor: 'rgb(255 61 129 / 38%)',
+    sheenColor: 'rgb(255 255 255 / 76%)',
+    speed: 1100,
+    angle: 118,
+    size: '62%',
+    radius: 18
+  }}
+/>`
       },
       {
         title: 'Useful classes',

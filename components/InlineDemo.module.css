@@ -112,6 +112,8 @@
 }
 
 .status {
+  display: grid;
+  gap: 0.4rem;
   font-family: "SFMono-Regular", Consolas, monospace;
   font-size: 0.9rem;
   font-weight: 850;
@@ -121,4 +123,69 @@
   color: #f6f0df;
   border: 2px solid var(--line);
   border-radius: var(--radius);
+}
+
+.featureStrip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.featureStrip span {
+  background: var(--acid);
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  box-shadow: 3px 3px 0 var(--line);
+  font-size: 0.82rem;
+  font-weight: 900;
+  padding: 0.5rem 0.75rem;
+}
+
+.inViewBox {
+  background: #111116;
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  color: white;
+  padding: 1.25rem;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.inViewBox[data-active='true'] {
+  background: linear-gradient(135deg, #7b61ff, var(--hot));
+  transform: translateY(-2px);
+}
+
+.inViewBox span {
+  color: var(--acid);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.inViewBox p {
+  margin: 0.6rem 0 0;
+}
+
+.providerGrid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+@media (max-width: 720px) {
+  .providerGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .preview {
+    padding: 1rem;
+  }
+  
+  .heroDemo {
+    min-height: 14rem;
+  }
+  
+  .cardDemo {
+    padding: 1rem;
+  }
 }

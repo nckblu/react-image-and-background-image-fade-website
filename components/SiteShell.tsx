@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { GitBranch, ImageIcon } from 'lucide-react'
+import { ImageIcon } from 'lucide-react'
+import { NavLinks } from './NavLinks'
 import styles from './SiteShell.module.css'
 
 export function SiteShell({ children }: { children: React.ReactNode }) {
@@ -14,24 +15,10 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
             <span className={styles.mark} aria-hidden="true">
               <ImageIcon size={18} strokeWidth={3} />
             </span>
-            <span>react image and background image fade</span>
+            <span className={styles.brandFull}>react image and background image fade</span>
+            <span className={styles.brandShort} aria-hidden="true">ribif</span>
           </Link>
-          <div className={styles.links}>
-            <Link className={styles.link} href="/docs">
-              Docs
-            </Link>
-            <Link className={styles.link} href="/demos">
-              Demos
-            </Link>
-            <a
-              className={styles.github}
-              href="https://github.com/nckblu/react-image-and-background-image-fade"
-              rel="noreferrer"
-              target="_blank"
-            >
-              <GitBranch size={15} aria-hidden="true" /> GitHub
-            </a>
-          </div>
+          <NavLinks />
         </nav>
       </header>
       <main id="content" className={styles.main}>

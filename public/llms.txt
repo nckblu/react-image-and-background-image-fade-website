@@ -1,6 +1,6 @@
-# react-image-and-background-image-fade
+# React Image and Background Image Fade
 
-A slick, dependency-free React package for elegantly fading in images and CSS backgrounds as they load, with built-in placeholders (skeleton, blur, color) and responsive srcSet generation.
+react image and background image fade is a modern React image loading toolkit for images, background images, responsive sources, placeholders (skeleton, blur, color), lazy loading, and fade transitions. Version 2 includes a hook-first API, `<Picture>` for art direction, and helper utilities.
 
 ## Installation
 `npm install react-image-and-background-image-fade`
@@ -16,38 +16,49 @@ import 'react-image-and-background-image-fade/styles.css'
 ### 2. Standard Responsive Image
 Use the `<Image>` component as a drop-in replacement for standard `<img>` tags.
 ```tsx
-import { Image } from 'react-image-and-background-image-fade'
+import { Image, easings } from 'react-image-and-background-image-fade'
 
-function MyComponent() {
+export function MyComponent() {
   return (
     <Image
-      src="/photo.jpg"
-      alt="Description"
+      src="/photo-1200.jpg"
+      alt="Mountain sunrise"
       width={1200}
       height={800}
-      placeholder="skeleton" // Options: 'skeleton', 'blur', 'color', 'none'
-      duration={500} // Fade duration in ms
-      lazy={true} // Uses native loading="lazy"
+      srcSet="/photo-640.jpg 640w, /photo-1200.jpg 1200w, /photo-1800.jpg 1800w"
+      sizes="(max-width: 768px) 100vw, 50vw"
+      placeholder="skeleton"
+      fadeType="zoom-blur"
+      easing={easings.cinematic}
+      duration={1200}
+      skeleton={{
+        baseColor: '#111318',
+        highlightColor: '#242936',
+        accentColor: 'rgb(255 61 129 / 38%)'
+      }}
+      lazy={true}
     />
   )
 }
 ```
 
 ### 3. Background Images
-Use `<BackgroundImage>` to apply a preloaded, fading background to a container.
+Use `<BackgroundImage>` to apply a preloaded, fading background to an element. You can use the `as` prop to render a specific HTML tag, or `asChild` to apply the background behavior to a custom element.
 ```tsx
 import { BackgroundImage } from 'react-image-and-background-image-fade'
 
-function HeroSection() {
+export function HeroSection() {
   return (
     <BackgroundImage
       src="/hero.jpg"
       width="100%"
       height="400px"
-      fit="cover" // background-size
-      position="center" // background-position
+      fit="cover"
+      position="center"
       placeholder="color"
-      color="#1a1a1a" // Fallback color while loading
+      color="#1a1a1a"
+      fadeType="curtain"
+      duration={1200}
     >
       <h1>Layered Content Here</h1>
     </BackgroundImage>
@@ -55,21 +66,79 @@ function HeroSection() {
 }
 ```
 
-### 4. Custom Loading Hooks
-If you need to build custom loading UI, use `useImage`:
+### 4. Picture for Art Direction / Formats
+Use `<Picture>` when you need AVIF/WebP fallbacks or multiple crops.
+```tsx
+import { Picture } from 'react-image-and-background-image-fade'
+
+<Picture
+  src="/landscape.jpg"
+  alt="Wide landscape"
+  width={1200}
+  height={800}
+  sources={[
+    { srcSet: '/landscape.avif 1200w', type: 'image/avif' },
+    { srcSet: '/landscape.webp 1200w', type: 'image/webp' }
+  ]}
+/>
+```
+
+### 5. Fade Types and Easings
+Eight reveal styles: `fade` (default), `blur-in`, `zoom-blur`, `soft-reveal`, `wipe`, `slide-up`, `scale`, `curtain`.
+Curated easing curves: `easings.default`, `material`, `apple`, `emphasized`, `sharp`, `spring`, `cinematic`, `dramatic`.
+
+### 6. Image Hooks and Responsive Helpers
+Use `useImage` to build custom loading UIs:
 ```tsx
 import { useImage } from 'react-image-and-background-image-fade'
 
 function CustomLoader() {
-  const { status, src } = useImage({ src: '/heavy.jpg' })
+  const { status, src, isIdle, isLoading, isLoaded, isError } = useImage({ src: '/heavy.jpg' })
+  // status is 'idle' | 'loading' | 'loaded' | 'error'
   
-  if (status === 'loading') return <Spinner />
-  if (status === 'error') return <ErrorPlaceholder />
+  if (isLoading) return <Spinner />
+  if (isError) return <ErrorPlaceholder />
   return <img src={src} />
+}
+```
+
+Use `createSrcSet` and `createSizes` for cleaner responsive APIs:
+```tsx
+import { createSizes, createSrcSet } from 'react-image-and-background-image-fade'
+
+const srcSet = createSrcSet({ src: 'https://images.example.com/photo.jpg', widths: [480, 768, 1200, 1600], quality: 80 })
+const sizes = createSizes({
+  breakpoints: [
+    { media: '(max-width: 640px)', size: '100vw' },
+    { media: '(max-width: 1200px)', size: '50vw' }
+  ],
+  defaultSize: '640px'
+})
+```
+
+Preload helpers are available: `preloadImage({ src, srcSet, sizes })`, `preloadImages(srcArray)`, `preconnectImage(url)`.
+
+### 7. Skeleton Shimmer Customization
+Pass a typed `skeleton` object to the component or use CSS variables:
+```css
+.my-image {
+  --ribif-skeleton-bg: #111318;
+  --ribif-skeleton-highlight: #242936;
+  --ribif-skeleton-accent: rgb(255 61 129 / 38%);
+  --ribif-skeleton-sheen: rgb(255 255 255 / 76%);
+  --ribif-shimmer-color: rgb(255 255 255 / 46%);
+  --ribif-shimmer-speed: 1.1s;
+  --ribif-shimmer-angle: 118deg;
+  --ribif-shimmer-size: 62%;
+  --ribif-skeleton-radius: 18px;
+  --ribif-blur-amount: 20px;
 }
 ```
 
 ## AI Best Practices
 - **Always** include the `styles.css` import in the root.
 - Use `width` and `height` props to prevent cumulative layout shift (CLS).
-- For placeholders, `blur` requires a `blurDataURL` (typically a tiny base64 image). If unavailable, prefer `skeleton` or `color`.
+- For placeholders, `blur` can use a `blurDataURL` (passed natively as `src` while loading), but if it is not supplied the package uses the final image as the blurred preview so it still blurs in seamlessly.
+- Use `placeholder="blur"` with `fadeType="blur-in"` or `fadeType="zoom-blur"` with `easing={easings.cinematic}` for the most cinematic loading experience.
+- Use `<Picture>` for AVIF/WebP image fallbacks.
+- Use `ImageConfigProvider` to set consistent defaults across your app.

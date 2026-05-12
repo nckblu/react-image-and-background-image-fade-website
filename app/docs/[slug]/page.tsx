@@ -1,11 +1,10 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { CodeBlock } from '@/components/CodeBlock'
-import { DemoStage } from '@/components/DemoStage'
 import { InlineDemo } from '@/components/InlineDemo'
 import { SiteShell } from '@/components/SiteShell'
 import { docSlugs } from '@/lib/content'
-import { getDoc, getDemo } from '@/data/site'
+import { getDoc, getDemo, docsNav } from '@/data/site'
 import { DocHero, DocsNav } from '../DocsParts'
 import styles from '../docs.module.css'
 
@@ -33,8 +32,11 @@ export default async function DocPage({
   const { slug } = await params
   const doc = getDoc(slug)
   if (!doc || doc.slug === 'overview') notFound()
-  
+
   const demo = getDemo(doc.demoSlug || doc.slug)
+  const navIndex = docsNav.findIndex(item => item.href === `/docs/${slug}`)
+  const prevDoc = navIndex > 0 ? docsNav[navIndex - 1] : null
+  const nextDoc = navIndex < docsNav.length - 1 ? docsNav[navIndex + 1] : null
 
   return (
     <SiteShell>
@@ -51,12 +53,31 @@ export default async function DocPage({
           ))}
           {demo && (
             <section className={styles.section} style={{ marginTop: '2rem' }}>
-              <h2>Interactive Live Demo</h2>
-              <p>Play with the live configuration for {doc.title}.</p>
-              <div style={{ marginTop: '1.5rem' }}>
-                <DemoStage demo={demo} />
+              <h2>Try the full demo</h2>
+              <p>Open the focused {demo.title} playground for the wider controls and live output.</p>
+              <div className={styles.cards} style={{ marginTop: '1.25rem' }}>
+                <Link className={styles.card} href={`/demos/${demo.slug}`}>
+                  <h2>{demo.title}</h2>
+                  <p>{demo.description}</p>
+                </Link>
               </div>
             </section>
+          )}
+          {(prevDoc || nextDoc) && (
+            <nav className={styles.docNav} aria-label="Page navigation">
+              {prevDoc ? (
+                <Link className={styles.docNavPrev} href={prevDoc.href}>
+                  <span className={styles.docNavLabel}>← Previous</span>
+                  <span className={styles.docNavTitle}>{prevDoc.title}</span>
+                </Link>
+              ) : <div />}
+              {nextDoc && (
+                <Link className={styles.docNavNext} href={nextDoc.href}>
+                  <span className={styles.docNavLabel}>Next →</span>
+                  <span className={styles.docNavTitle}>{nextDoc.title}</span>
+                </Link>
+              )}
+            </nav>
           )}
         </article>
       </div>

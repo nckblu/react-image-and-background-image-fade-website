@@ -1,7 +1,32 @@
 import Link from 'next/link'
+import {
+  Activity,
+  ArrowLeftRight,
+  Boxes,
+  Braces,
+  ImageIcon,
+  Layers3,
+  Loader,
+  Palette,
+  Sparkles,
+  type LucideIcon
+} from 'lucide-react'
 import type { DocPage } from '@/data/site'
 import { docsNav } from '@/data/site'
 import styles from './docs.module.css'
+
+const DOC_ICONS: Record<string, LucideIcon> = {
+  overview: ImageIcon,
+  image: ImageIcon,
+  'background-image': Layers3,
+  picture: Boxes,
+  'image-loader': Loader,
+  hooks: Activity,
+  'responsive-helpers': Braces,
+  'shared-defaults': Palette,
+  styling: Sparkles,
+  migration: ArrowLeftRight
+}
 
 export function DocsNav({ active }: { active: string }) {
   return (
@@ -19,11 +44,17 @@ export function DocsNav({ active }: { active: string }) {
 }
 
 export function DocHero({ doc }: { doc: DocPage }) {
+  const Icon = DOC_ICONS[doc.slug] ?? ImageIcon
   return (
     <header className={styles.hero}>
-      <span className={styles.eyebrow}>{doc.eyebrow}</span>
-      <h1>{doc.title}</h1>
-      <p>{doc.description}</p>
+      <div className={styles.heroBody}>
+        <span className={styles.eyebrow}>{doc.eyebrow}</span>
+        <h1>{doc.title}</h1>
+        <p className={styles.heroDesc}>{doc.description}</p>
+      </div>
+      <div className={styles.heroIcon} aria-hidden="true">
+        <Icon size={64} strokeWidth={1} />
+      </div>
     </header>
   )
 }

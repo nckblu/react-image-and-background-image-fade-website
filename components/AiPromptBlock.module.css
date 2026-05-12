@@ -1,0 +1,68 @@
+.wrap {
+  border: 2px solid #2a2533;
+  border-radius: var(--radius);
+  margin: 0 auto;
+  max-width: 52rem;
+  overflow: hidden;
+  text-align: left;
+}
+
+.bar {
+  align-items: center;
+  background: #1e1a26;
+  border-bottom: 1px solid #2a2533;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  padding: 0.55rem 1rem;
+}
+
+.barLabel {
+  color: #6a6078;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.copyButton {
+  align-items: center;
+  background: #2a2533;
+  border: 1px solid #3a3445;
+  border-radius: 5px;
+  color: #e8e0f0;
+  cursor: pointer;
+  display: inline-flex;
+  flex-shrink: 0;
+  font-size: 0.7rem;
+  font-weight: 900;
+  gap: 0.35rem;
+  letter-spacing: 0.06em;
+  padding: 0.3rem 0.6rem;
+  text-transform: uppercase;
+  transition: background 0.15s ease;
+}
+
+.copyButton:hover {
+  background: #3a3445;
+}
+
+.pre {
+  background: #111116;
+  color: #c9c1d4;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.85rem;
+  line-height: 1.65;
+  margin: 0;
+  overflow-x: auto;
+  padding: 1.25rem 1.5rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+@media (max-width: 640px) {
+  .pre {
+    font-size: 0.78rem;
+    padding: 1rem;
+  }
+}

@@ -8,13 +8,17 @@ test('homepage renders the funky package story and live lab', async ({ page }) =
 
   await page.goto('/')
 
-  await expect(page.getByRole('heading', { name: /image loading with a little swagger/i })).toBeVisible()
+  await expect(
+    page.getByRole('heading', {
+      name: /react image and background image fade without the jank/i
+    })
+  ).toBeVisible()
   await expect(page.getByText('npm install react-image-and-background-image-fade')).toBeVisible()
   await expect(page.getByTestId('fade-lab').first()).toBeVisible()
   await expect(page.locator('[data-status="loaded"]').first()).toBeVisible()
 
-  await page.getByRole('button', { name: 'blur' }).first().click()
-  await expect(page.getByText('placeholder="blur"')).toBeVisible()
+  await page.getByRole('button', { name: 'blur', exact: true }).first().click()
+  await expect(page.locator('pre').filter({ hasText: 'placeholder="blur"' })).toBeVisible()
 
   expect(errors).toEqual([])
 })
@@ -29,7 +33,8 @@ test('docs routes render and navigation works', async ({ page }) => {
     .click()
   await expect(page).toHaveURL(/\/docs\/background-image\/$/)
   await expect(page.getByRole('heading', { name: 'BackgroundImage' })).toBeVisible()
-  await expect(page.getByText('lazy={{ rootMargin')).toBeVisible()
+  await expect(page.locator('pre').filter({ hasText: 'src="/images/home/header.jpg"' })).toBeVisible()
+  await expect(page.locator('pre').filter({ hasText: 'fadeType="soft-reveal"' })).toBeVisible()
 })
 
 test('demo controls visibly affect output', async ({ page }) => {
@@ -45,7 +50,11 @@ test('mobile viewport keeps navigation and hero readable', async ({ page }) => {
   await page.goto('/')
 
   await expect(page.getByRole('navigation', { name: 'Main navigation' })).toBeVisible()
-  await expect(page.getByRole('heading', { name: /image loading with a little swagger/i })).toBeVisible()
+  await expect(
+    page.getByRole('heading', {
+      name: /react image and background image fade without the jank/i
+    })
+  ).toBeVisible()
   await expect(
     page
       .getByRole('navigation', { name: 'Main navigation' })

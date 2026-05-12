@@ -23,7 +23,7 @@ export function MockWindowBar() {
 
       {showToast && (
         <div className={styles.toast}>
-          these buttons don't do anything, just install the package and stop clicking
+          these buttons don&apos;t do anything, just install the package and stop clicking
         </div>
       )}
     </div>

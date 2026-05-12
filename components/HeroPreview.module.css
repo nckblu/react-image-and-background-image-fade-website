@@ -1,0 +1,115 @@
+.root {
+  height: 100%;
+  min-height: 420px;
+  position: relative;
+  width: 100%;
+}
+
+.bg {
+  height: 100%;
+  min-height: 420px;
+  width: 100%;
+}
+
+.overlay {
+  background: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 30%) 0%,
+    transparent 30%,
+    transparent 60%,
+    rgb(0 0 0 / 55%) 100%
+  );
+  color: white;
+  display: flex;
+  flex-direction: column;
+  inset: 0;
+  justify-content: space-between;
+  padding: 1.25rem;
+  position: absolute;
+}
+
+.topRow {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.liveBadge {
+  align-items: center;
+  background: rgb(0 0 0 / 45%);
+  border: 1px solid rgb(255 255 255 / 18%);
+  border-radius: 999px;
+  display: inline-flex;
+  font-size: 0.68rem;
+  font-weight: 800;
+  gap: 0.4rem;
+  letter-spacing: 0.1em;
+  padding: 0.35rem 0.7rem;
+  text-transform: uppercase;
+}
+
+.liveDot {
+  animation: pulse 2s ease-in-out infinite;
+  background: var(--acid);
+  border-radius: 50%;
+  box-shadow: 0 0 6px var(--acid);
+  display: block;
+  flex-shrink: 0;
+  height: 6px;
+  width: 6px;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.bottomRow {
+  align-items: flex-end;
+  display: flex;
+  justify-content: space-between;
+}
+
+.fadeTag {
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: clamp(1.6rem, 5vw, 2.8rem);
+  font-weight: 950;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  text-shadow: 0 2px 20px rgb(0 0 0 / 60%);
+}
+
+.dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  background: rgb(255 255 255 / 40%);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 8px;
+  padding: 0;
+  transition: background 0.2s ease, transform 0.2s ease;
+  width: 8px;
+}
+
+.dot[data-active='true'] {
+  background: var(--acid);
+  transform: scale(1.25);
+}
+
+.dot:hover {
+  background: white;
+}
+
+@media (max-width: 900px) {
+  .root,
+  .bg {
+    min-height: 280px;
+  }
+
+  .fadeTag {
+    font-size: clamp(1.4rem, 6vw, 2rem);
+  }
+}

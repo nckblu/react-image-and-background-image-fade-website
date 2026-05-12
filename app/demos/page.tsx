@@ -24,7 +24,7 @@ export default function DemosPage() {
                 <Link href={item.href} className={styles.demoLink}>
                   Open Demo
                 </Link>
-                <Link href={`/docs/${item.href.split('/').pop()}`} className={styles.docLink}>
+                <Link href={item.docHref ?? `/docs/${item.href.split('/').pop()}`} className={styles.docLink}>
                   Read Docs
                 </Link>
               </div>

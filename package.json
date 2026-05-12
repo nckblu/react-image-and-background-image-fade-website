@@ -4,7 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build:package": "npm --prefix ../react-image-and-background-image-fade run build",
+    "predev": "npm run build:package",
     "dev": "next dev --webpack",
+    "prebuild": "npm run build:package",
     "build": "next build --webpack",
     "start": "next start -p 3006",
     "typecheck": "tsc --noEmit",

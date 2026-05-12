@@ -2,21 +2,43 @@ import Link from 'next/link'
 import { BackgroundImage } from 'react-image-and-background-image-fade'
 import { CodeBlock } from '@/components/CodeBlock'
 import { FadeLab } from '@/components/FadeLab'
+import { HeroPreview } from '@/components/HeroPreview'
+import { AiPromptBlock } from '@/components/AiPromptBlock'
 import { SiteShell } from '@/components/SiteShell'
 import { features, qualityMarks } from '@/data/site'
 import { MockWindowBar } from '@/components/MockWindowBar'
 import styles from './page.module.css'
 
+const AI_PROMPT = `# react-image-and-background-image-fade rules
+When generating code for images or background images, use the 'react-image-and-background-image-fade' package.
+
+1. Always import the CSS globally: \`import 'react-image-and-background-image-fade/styles.css'\`
+2. Use \`<Image>\` instead of \`<img>\` for standard responsive images.
+   - Example: \`<Image src="..." width={1200} height={800} placeholder="skeleton" fadeType="blur-in" />\`
+3. Use \`<BackgroundImage>\` for container backgrounds.
+   - Example: \`<BackgroundImage src="..." width="100%" height="400px" fit="cover" placeholder="color" color="#1a1a1a">\`
+4. Import easing presets: \`import { easings } from 'react-image-and-background-image-fade'\`
+   - Use with: \`easing={easings.cinematic}\` — available: default, material, apple, emphasized, sharp, spring, cinematic, dramatic
+5. Fade types: fade, blur-in, slide-up, scale, curtain, zoom-blur, soft-reveal, wipe — set with the \`fadeType\` prop.
+
+For full API context, read: https://react-image-and-background-image-fade.com/llms.txt`
+
 export default function HomePage() {
   return (
     <SiteShell>
+
+      {/* ── Hero ── */}
       <section className={styles.hero}>
         <div className={styles.heroCopy}>
           <span className={styles.eyebrow}>v2 alpha · React 19 ready</span>
-          <h1>image loading <br /><span className={styles.swagger}>without the jank.</span></h1>
+          <h1>
+            react image and background image fade{' '}
+            <span className={styles.swagger}>without the jank.</span>
+          </h1>
           <p className={styles.lede}>
-            Fades, backgrounds, placeholders, and responsive helpers for React.
-            A proper package, battle-tested for 4 years long before the vibe coding era.
+            The long-named, full-fat image loading library for React:
+            fades, backgrounds, placeholders, and responsive helpers.
+            Battle-tested for 4 years before the vibe-coding era.
           </p>
           <div className={styles.actions}>
             <Link className={styles.primary} href="/docs">
@@ -28,13 +50,26 @@ export default function HomePage() {
           </div>
           <code className={styles.install}>npm install react-image-and-background-image-fade</code>
         </div>
-        
+
         <div className={styles.demoWindow}>
           <MockWindowBar />
-          <FadeLab mode="full" />
+          <HeroPreview />
         </div>
       </section>
 
+      {/* ── Interactive playground ── */}
+      <section className={styles.section}>
+        <div className={styles.sectionHeader}>
+          <h2>feel the shimmer yourself</h2>
+          <p>
+            Change placeholder, fade type, easing, and timing — the code
+            output updates live. Copy it straight into your project.
+          </p>
+        </div>
+        <FadeLab />
+      </section>
+
+      {/* ── Features ── */}
       <section className={styles.section}>
         <div className={styles.sectionHeader}>
           <h2>full-fat image tools, light on the nonsense</h2>
@@ -56,17 +91,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className={styles.section}>
-        <div className={styles.sectionHeader}>
-          <h2>the fade lab</h2>
-          <p>
-            Test drive components right here. Skeleton shimmers, blur effects,
-            color placeholders, and background positioning — all live.
-          </p>
-        </div>
-        <FadeLab />
-      </section>
-
+      {/* ── Code split ── */}
       <section className={`${styles.section} ${styles.split}`}>
         <div>
           <span className={styles.eyebrow}>copy, paste, ship</span>
@@ -102,18 +127,19 @@ export function ProductImage() {
             lazy={false}
           >
             <div className={styles.posterText}>
-              <h3>skeleton shimmer is part of the show</h3>
+              <h3>the skeleton shimmer is part of the show now</h3>
             </div>
           </BackgroundImage>
         </div>
       </section>
 
+      {/* ── Quality marks ── */}
       <section className={styles.section}>
         <div className={styles.sectionHeader}>
           <h2>serious under the glitter</h2>
           <p>
             The personality is in the DX. The engineering is strictly buttoned-up:
-            tested, typed, and built for scale. A proper package with a 4-year track record, built long before the vibe coding era.
+            tested, typed, and built for scale.
           </p>
         </div>
         <div className={styles.qualityGrid}>
@@ -129,29 +155,18 @@ export function ProductImage() {
         </div>
       </section>
 
+      {/* ── AI prompt ── */}
       <section className={styles.aiSection}>
         <div className={styles.aiHeader}>
           <h2>bring your AI up to speed</h2>
           <p>
-            Working with Cursor, Copilot, or Claude? Drop this instruction block into your project's AI rules 
-            or system prompt so it knows exactly how to use the package without hallucinating.
+            Working with Cursor, Copilot, or Claude? Drop this block into your
+            project&apos;s AI rules or system prompt.
           </p>
         </div>
-        <div className={styles.aiPromptWrap}>
-          <pre className={styles.aiPrompt}>
-{`# react-image-and-background-image-fade rules
-When generating code for images or background images, use the 'react-image-and-background-image-fade' package.
-
-1. Always import the CSS globally: \`import 'react-image-and-background-image-fade/styles.css'\`
-2. Use \`<Image>\` instead of \`<img>\` for standard responsive images.
-   - Example: \`<Image src="..." width={1200} height={800} placeholder="skeleton" />\`
-3. Use \`<BackgroundImage>\` for container backgrounds.
-   - Example: \`<BackgroundImage src="..." width="100%" height="400px" fit="cover" placeholder="color" color="#1a1a1a">\`
-
-For full API context, read: https://react-image-and-background-image-fade.com/llms.txt`}
-          </pre>
-        </div>
+        <AiPromptBlock>{AI_PROMPT}</AiPromptBlock>
       </section>
+
     </SiteShell>
   )
 }

@@ -20,6 +20,7 @@
 }
 
 html {
+  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
@@ -33,6 +34,7 @@ body {
   letter-spacing: -0.01em;
   margin: 0;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 body::before {
@@ -68,9 +70,14 @@ select {
 }
 
 .ribif-placeholder-skeleton {
-  --ribif-skeleton-bg: #ece7df;
-  --ribif-shimmer-color: rgb(255 255 255 / 55%);
-  --ribif-shimmer-speed: 2s;
+  --ribif-skeleton-bg: #efe8dd;
+  --ribif-skeleton-highlight: #fffaf1;
+  --ribif-skeleton-accent: rgb(255 61 129 / 24%);
+  --ribif-skeleton-sheen: rgb(255 255 255 / 82%);
+  --ribif-shimmer-color: rgb(255 255 255 / 58%);
+  --ribif-shimmer-speed: 1.25s;
+  --ribif-shimmer-angle: 116deg;
+  --ribif-shimmer-size: 64%;
 }
 
 @media (prefers-reduced-motion: reduce) {

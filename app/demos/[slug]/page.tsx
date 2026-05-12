@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { DemoStage } from '@/components/DemoStage'
 import { SiteShell } from '@/components/SiteShell'
@@ -34,6 +35,9 @@ export default async function DemoPage({
   return (
     <SiteShell>
       <section className={styles.stageWrap}>
+        <div className={styles.breadcrumb}>
+          <Link href="/demos" className={styles.backLink}>← All demos</Link>
+        </div>
         <header className={styles.hero}>
           <span>Interactive demo</span>
           <h1>{demo.title}</h1>
