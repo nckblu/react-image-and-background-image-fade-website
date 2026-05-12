@@ -16,7 +16,11 @@ export const metadata: Metadata = {
   description:
     'A modern React toolkit for image fades, background images, skeleton placeholders, lazy loading, responsive srcSet helpers, and polished transitions. React 19 ready.',
   icons: {
-    icon: '/favicon.ico'
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: 'any' }
+    ],
+    apple: '/apple-touch-icon.png'
   },
   metadataBase: new URL('https://react-image-and-background-image-fade.com')
 }
