@@ -9,7 +9,7 @@
     "dev": "next dev --webpack",
     "prebuild": "npm run build:package",
     "build": "next build --webpack",
-    "start": "next start -p 3006",
+    "start": "serve out -l 3006",
     "typecheck": "tsc --noEmit",
     "lint": "eslint . --max-warnings=0",
     "test": "vitest run",

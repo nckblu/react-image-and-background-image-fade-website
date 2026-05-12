@@ -18,6 +18,15 @@ npm install
 npm run dev
 ```
 
+## Static Build
+
+```bash
+npm run build
+npm start
+```
+
+`npm run build` exports the whole site to `out/` as static HTML, CSS, JS, and assets. Deploy the `out/` directory to static hosting. `npm start` serves that exported folder locally on port `3006`.
+
 ## Quality Gate
 
 ```bash
